@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding: utf-8
 #
 # Copyright (C) 2012 André Panisson
@@ -14,22 +13,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#
+#
+# This file has been modified by 'moafois@hotmail.de' by
+# porting it to Python3.
+#
 """
 Allow a Python script to communicate with Gephi using the Gephi Graph Streaming protocol and plugin.
 """
 
 __author__ = 'panisson@gmail.com'
 
-import urllib2
-try:
-    import json
-except ImportError:
-    try:
-        import simplejson as json
-    except:
-        raise "Requires either simplejson or Python 2.6!"
-
+import urllib.request, urllib.error, urllib.parse
+import json
 import time
 
 class JSONClient(object):
@@ -56,7 +52,7 @@ class JSONClient(object):
             self.data = ""
         
     def _send(self, data):
-        print 'passing'
+        print('passing')
         pass
         
     def add_node(self, id, flush=True, **attributes):
@@ -90,7 +86,7 @@ class GephiClient(JSONClient):
         self.url = url
         
     def _send(self, data):
-        conn = urllib2.urlopen(self.url+ '?operation=updateGraph', data)
+        conn = urllib.request.urlopen(self.url+ '?operation=updateGraph', data.encode('utf-8'))
         return conn.read()
     
 class GephiFileHandler(JSONClient):

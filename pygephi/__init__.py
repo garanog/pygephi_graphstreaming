@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding: utf-8
 #
 # Copyright (C) 2012 André Panisson
@@ -14,6 +13,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+#
+# This file has been modified by 'moafois@hotmail.de' by
+# porting it to Python3.
+#
 
-from client import GephiClient, GephiFileHandler
+__all__ = ['client']
+# deprecated to keep older scripts who import this from breaking
+from pygephi.client import GephiClient, GephiFileHandler
 
